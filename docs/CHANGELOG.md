@@ -1,3 +1,16 @@
+## [1.0.8](https://github.com/tallulahh/semantic-release/compare/1.0.7...1.0.8) (2025-09-12)
+
+### 🐛 Bug Fixes
+
+* Update python yaml ([1e2b4ff](https://github.com/tallulahh/semantic-release/commit/1e2b4fffd7547e9e8a9563ed39c9de37840a2cea))
+* Update python yaml ([94d3769](https://github.com/tallulahh/semantic-release/commit/94d3769659e37ef7fd694ef3a22fb052817a2589))
+
+### 📝 Documentation
+
+* Test generate action and workflow docs ([c67ee83](https://github.com/tallulahh/semantic-release/commit/c67ee83589a76e25ec6d5d2c9bfb2bcf301a9ff2))
+* Test generate action and workflow docs ([bbdc293](https://github.com/tallulahh/semantic-release/commit/bbdc2932929e104cb9026652eda210cb82c0c736))
+* Test generate action and workflow docs ([10cf156](https://github.com/tallulahh/semantic-release/commit/10cf156426562e5e262ef5c7635feab138171571))
+
 ## [1.0.7](https://github.com/tallulahh/semantic-release/compare/1.0.6...1.0.7) (2025-09-12)
 
 ### 🐛 Bug Fixes
