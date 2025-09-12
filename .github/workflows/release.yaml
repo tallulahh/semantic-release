@@ -19,7 +19,7 @@ jobs:
         with:
           python-version: '3.x'
       - name: Update Documentation
-        run: ./scripts/update_readme.py
+        run: python3 ./scripts/update_readme.py
       - name: Set Version
         id: set_version
         run: |
