@@ -5,9 +5,9 @@ import glob
 from ruamel.yaml import YAML
 from pathlib import Path
 
-ACTIONS_DIR = Path("actions")
+ACTIONS_DIR = Path(".github/workflows/actions")
 DOCS_DIR = Path("docs/actions")
-REPO = os.environ.get("GITHUB_REPOSITORY", "OWNER/REPO")
+REPO = os.environ.get("GITHUB_REPOSITORY")
 
 def md_escape(val):
     if val is None:
