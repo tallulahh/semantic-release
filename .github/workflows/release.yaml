@@ -1,0 +1,30 @@
+name: Release 
+on:
+  push:
+    branches:
+      - main
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  deploy:
+    permissions: write-all
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set Version
+        id: set_version
+        run: |
+          npm install -g semantic-release@24.2.5 \
+            @semantic-release/changelog@6.0.3 \
+            @semantic-release/commit-analyzer@7.1.0 \
+            @semantic-release/exec@7.1.0 \
+            @semantic-release/git@10.0.1 \
+            @semantic-release/github@9.0.3 \
+            @semantic-release/release-notes-generator@10.0.3
+          npm install -g conventional-changelog@7.1.0 \
+            conventional-changelog-conventionalcommits@9.0.0 \
+            conventional-changelog-cli@5.0.0
+          npx semantic-release
+          echo "nextReleaseVersion=$(cat build.env | cut -f2 -d"="")" >> $GITHUB_OUTPUT

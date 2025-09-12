@@ -1,0 +1,95 @@
+---
+branches:
+  - name: main
+tagFormat: '${version}'
+preset: "angular"
+plugins:
+  - "@semantic-release/commit-analyzer"
+  - "@semantic-release/release-notes-generator"
+  - "@semantic-release/changelog"
+  - "@semantic-release/git"
+  - - "@semantic-release/changelog"
+    - changelogFile: "CHANGELOG.md"
+  - - "@semantic-release/exec"
+    - verifyReleaseCmd: "echo nextReleaseVersion=${nextRelease.version} >> build.env"
+      analyzeCommitCmd: "exit 0"
+
+verifyConditions:
+  - "@semantic-release/git"
+  - "@semantic-release/github"
+
+analyzeCommits:
+  - path: "@semantic-release/commit-analyzer"
+    releaseRules:
+      - type: "docs"
+        release: "patch"
+      - type: "style"
+        release: "patch"
+      - type: "refactor"
+        release: "patch"
+      - type: "chore"
+        release: "patch"
+      - type: "test"
+        release: "patch"
+      - type: "build"
+        release: "patch"
+
+generateNotes:
+  - path: "@semantic-release/release-notes-generator"
+    preset: "conventionalcommits"
+    writerOpts:
+      groupBy: ["type"]
+      commitGroupsSort:
+        - "feat"
+        - "fix"
+        - "perf"
+        - "revert"
+        - "docs"
+        - "style"
+        - "refactor"
+        - "test"
+        - "build"
+        - "ci"
+        - "chore"
+      commitsSort: "header"
+    presetConfig:
+      types:
+        - type: "feat"
+          section: "🚀 Features"
+        - type: "fix"
+          section: "🐛 Bug Fixes"
+        - type: "perf"
+          section: "⚡ Performance Improvements"
+        - type: "revert"
+          section: "⏪ Reverts"
+        - type: "docs"
+          section: "📝 Documentation"
+        - type: "style"
+          section: "💄 Styles"
+        - type: "refactor"
+          section: "♻️ Code Refactoring"
+        - type: "test"
+          section: "✅ Tests"
+        - type: "build"
+          section: "📦 Build System"
+        - type: "ci"
+          section: "🔧 Continuous Integration"
+        - type: "chore"
+          section: "🧹 Chores"
+
+prepare: 
+  - path: "@semantic-release/git"
+    message: "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+    assets:
+      - "CHANGELOG.md"
+  - path: "@semantic-release/changelog"
+    changelogFile: "CHANGELOG.md"
+
+publish:
+  - "@semantic-release/github"
+
+success:
+  - "@semantic-release/github"
+
+fail:
+  - "@semantic-release/github"
