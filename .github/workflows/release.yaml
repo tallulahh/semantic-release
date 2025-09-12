@@ -20,6 +20,7 @@ jobs:
           python-version: '3.x'
       - name: Update Documentation
         run: |
+          pip install yaml
           python3 ./scripts/generate_action_docs.py
           python3 ./scripts/generate_workflow_docs.py
           python3 ./scripts/update_readme.py
