@@ -1,0 +1,39 @@
+name: PR Validation
+
+on:
+  pull_request:
+    branches: [ develop, main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      # 1. YAML linting
+      - name: Install yamllint
+        run: pip install yamllint
+
+      - name: Run yamllint
+        run: |
+          yamllint .github/workflows
+          yamllint actions || true  # only if actions/ dirs exist
+
+      # 2. Ensure action.yml files have README.md
+      - name: Check actions have README
+        run: |
+          missing=0
+          for f in $(find actions -name "action.y*ml"); do
+            dir=$(dirname "$f")
+            if [ ! -f "$dir/README.md" ]; then
+              echo "::error file=$f::Missing README.md in $dir"
+              missing=1
+            fi
+          done
+          exit $missing
