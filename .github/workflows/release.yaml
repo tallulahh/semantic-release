@@ -26,3 +26,5 @@ jobs:
             conventional-changelog-cli@5.0.0
           npx semantic-release
           echo "nextReleaseVersion=$(cat build.env | cut -f2 -d"=")" >> $GITHUB_OUTPUT
+          git status
+          cat CHANGELOG.md
