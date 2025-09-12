@@ -5,7 +5,7 @@ import glob
 from ruamel.yaml import YAML
 from pathlib import Path
 
-ACTIONS_DIR = Path(".github/workflows/actions")
+ACTIONS_DIR = Path(".github/actions")
 DOCS_DIR = Path("docs/actions")
 REPO = os.environ.get("GITHUB_REPOSITORY")
 
