@@ -6,10 +6,12 @@ preset: "angular"
 plugins:
   - "@semantic-release/commit-analyzer"
   - "@semantic-release/release-notes-generator"
-  - "@semantic-release/changelog"
-  - "@semantic-release/git"
   - - "@semantic-release/changelog"
     - changelogFile: "CHANGELOG.md"
+  - - "@semantic-release/git"
+    - assets:
+        - "CHANGELOG.md"
+      message: "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
   - - "@semantic-release/exec"
     - verifyReleaseCmd: "echo nextReleaseVersion=${nextRelease.version} >> build.env"
       analyzeCommitCmd: "exit 0"
@@ -76,16 +78,6 @@ generateNotes:
           section: "🔧 Continuous Integration"
         - type: "chore"
           section: "🧹 Chores"
-
-prepare: 
-  - path: "@semantic-release/git"
-    message: "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-    assets:
-      - "CHANGELOG.md"
-    push:
-      branches: ["${branch.name}"]
-  - path: "@semantic-release/changelog"
-    changelogFile: "CHANGELOG.md"
 
 publish:
   - "@semantic-release/github"
