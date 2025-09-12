@@ -1,3 +1,9 @@
+## [1.0.9](https://github.com/tallulahh/semantic-release/compare/1.0.8...1.0.9) (2025-09-12)
+
+### 📦 Build System
+
+* test actions script ([d6369e4](https://github.com/tallulahh/semantic-release/commit/d6369e41c7d4baffac36a035e2859dabc1f8a205))
+
 ## [1.0.8](https://github.com/tallulahh/semantic-release/compare/1.0.7...1.0.8) (2025-09-12)
 
 ### 🐛 Bug Fixes
