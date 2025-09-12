@@ -5,7 +5,7 @@ on:
       - main
 
 env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
 
 jobs:
   deploy:
@@ -17,6 +17,8 @@ jobs:
       - name: Set Version
         id: set_version
         run: |
+          git config user.name "tallulahh"
+          git config user.email "tallulah.carlisle@gmail.com"
           npm install -g semantic-release@24.2.5 \
             @semantic-release/git@10.0.1 \
             @semantic-release/exec@7.1.0 \
