@@ -1,9 +1,11 @@
 import os
-import yaml
+from ruamel.yaml import YAML
 
 WORKFLOWS_DIR = ".github/workflows"
 DOCS_DIR = "docs/workflows"
-
+yaml = YAML()
+yaml.preserve_quotes = True
+yaml.width = 4096
 os.makedirs(DOCS_DIR, exist_ok=True)
 
 def format_table(obj, kind="Inputs"):
@@ -22,7 +24,7 @@ for file in os.listdir(WORKFLOWS_DIR):
         continue
 
     with open(os.path.join(WORKFLOWS_DIR, file), "r") as f:
-        wf_yaml = yaml.safe_load(f)
+        wf_yaml = yaml.load(f)
 
     name = wf_yaml.get("name", file.replace(".yml", "").replace(".yaml", ""))
     triggers = wf_yaml.get("on", {})

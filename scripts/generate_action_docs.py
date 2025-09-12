@@ -2,7 +2,7 @@
 import os
 import sys
 import glob
-import yaml
+from ruamel.yaml import YAML
 from pathlib import Path
 
 ACTIONS_DIR = Path("actions")
@@ -52,6 +52,9 @@ def runs_summary(runs):
 
 def main():
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
+    yaml = YAML()
+    yaml.preserve_quotes = True
+    yaml.width = 4096
     if not ACTIONS_DIR.exists():
         print("No actions/ directory found; nothing to document.")
         return
@@ -65,7 +68,7 @@ def main():
             continue
 
         with yml_path.open("r", encoding="utf-8") as f:
-            data = yaml.safe_load(f) or {}
+            data = yaml.load(f) or {}
 
         action_name = data.get("name") or adir.name
         description = data.get("description", "No description provided.")
