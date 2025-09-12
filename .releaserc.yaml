@@ -82,6 +82,8 @@ prepare:
     message: "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
     assets:
       - "CHANGELOG.md"
+    push:
+      branches: ["${branch.name}"]
   - path: "@semantic-release/changelog"
     changelogFile: "CHANGELOG.md"
 
