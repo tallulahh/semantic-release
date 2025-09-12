@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import os
 import sys
-import yaml
+from ruamel.yaml import YAML
 from pathlib import Path
 
 WORKFLOWS_DIR = Path(".github/workflows")
@@ -99,6 +99,9 @@ def example_usage(workflow_file, wf):
 
 def main():
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
+    yaml = YAML()
+    yaml.preserve_quotes = True
+    yaml.width = 4096
     if not WORKFLOWS_DIR.exists():
         print("No .github/workflows directory found; nothing to document.")
         return
@@ -107,7 +110,7 @@ def main():
         if not wf_path.suffix.lower() in (".yml", ".yaml"):
             continue
         with wf_path.open("r", encoding="utf-8") as f:
-            wf = yaml.safe_load(f) or {}
+            wf = yaml.load(f) or {}
 
         title = wf.get("name") or wf_path.stem
         triggers = parse_triggers(wf.get("on"))
