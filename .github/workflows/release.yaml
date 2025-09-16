@@ -32,7 +32,11 @@ jobs:
           gpg2 --import --batch ./*.asc
           rm -rf ./bot-key.asc
           rm -rf ./bot-private-key.asc
-
+          rm -rf /tmp/gpg.sh
+          echo '#!/bin/bash' >> /tmp/gpg.sh
+          echo 'gpg --batch --pinentry-mode=loopback --passphrase "${{ secrets.GPG_KEY_PASSPHRASE }}" $@' >> /tmp/gpg.sh
+          chmod +x /tmp/gpg.sh
+          
       - name: Git config
         run: |
           git config --global user.name "tallulahh"
@@ -40,6 +44,7 @@ jobs:
           git config --global commit.gpgsign true
           git config --global tag.gpgsign true
           git config --global user.signingkey ${{ secrets.GPG_SIGNING_KEY }}
+          git config --global gpg.program /tmp/gpg.sh
 
       - name: Set Version
         id: set_version
