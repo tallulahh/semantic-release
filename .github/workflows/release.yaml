@@ -42,6 +42,10 @@ jobs:
 
       - name: Set Version
         id: set_version
+        env:
+          GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
+          GIT_USERNAME: "tallulahh"
+          GIT_EMAIL: "tallulah.carlisle@gmail.com"
         run: |
           git config user.name "tallulahh"
           git config user.email "tallulah.carlisle@gmail.com"
