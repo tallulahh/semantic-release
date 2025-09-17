@@ -40,6 +40,7 @@ jobs:
           git config --global commit.gpgsign true
           git config --global tag.gpgsign true
           git config --global user.signingkey ${{ secrets.GPG_SIGNING_KEY }}
+          git config --global push.gpgsign true
           git status
           chmod +x ./sign.sh
 
@@ -56,8 +57,7 @@ jobs:
           GIT_COMMITTER_EMAIL: "tallulah.carlisle@gmail.com"
           GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
         run: |
-          git config user.name "tallulahh"
-          git config user.email "tallulah.carlisle@gmail.com"
+          git config --list
           npm install -g semantic-release@24.2.5 \
             @semantic-release/git@10.0.1 \
             @semantic-release/exec@7.1.0 \
