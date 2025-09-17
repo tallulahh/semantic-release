@@ -55,6 +55,7 @@ jobs:
           GIT_AUTHOR_EMAIL: "tallulah.carlisle@gmail.com"
           GIT_COMMITTER_EMAIL: "tallulah.carlisle@gmail.com"
           GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
+          EDITOR: "echo 'Created-by: semantic-release' > $1"
         run: |
           git config --list
           npm install -g semantic-release@24.2.5 \
