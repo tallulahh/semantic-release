@@ -1,3 +1,9 @@
+## [1.1.7](https://github.com/tallulahh/semantic-release/compare/1.1.6...1.1.7) (2025-09-17)
+
+### ✅ Tests
+
+* workflow ([badf8c3](https://github.com/tallulahh/semantic-release/commit/badf8c3e31acfbb5df806ff1bd55dc2aceab72ec))
+
 ## [1.0.10](https://github.com/tallulahh/semantic-release/compare/1.0.9...1.0.10) (2025-09-12)
 
 ### 📦 Build System

@@ -15,7 +15,7 @@ _Default (inherit from repository or job-level overrides)._
 _None_
 
 ## Jobs
-- **deploy**: runs-on `ubuntu-latest` with 4 step(s)
+- **deploy**: runs-on `ubuntu-latest` with 7 step(s)
 
 ## Example Usage
 _This workflow is not declared as reusable (`on.workflow_call`)._
