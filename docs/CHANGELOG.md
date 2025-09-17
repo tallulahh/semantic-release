@@ -1,3 +1,13 @@
+## [1.1.9](https://github.com/tallulahh/semantic-release/compare/1.1.8...1.1.9) (2025-09-17)
+
+### 🐛 Bug Fixes
+
+* test again ([888c2fd](https://github.com/tallulahh/semantic-release/commit/888c2fd7a084bb9c71992ec7d459fb49aad81bce))
+
+### 📝 Documentation
+
+* **release:** update documentation for version [skip ci] ([206f717](https://github.com/tallulahh/semantic-release/commit/206f7178304f3786fe0b486f367bd547e8537081))
+
 ## [1.1.8](https://github.com/tallulahh/semantic-release/compare/1.1.7...1.1.8) (2025-09-17)
 
 ### 🐛 Bug Fixes
