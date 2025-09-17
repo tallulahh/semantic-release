@@ -9,12 +9,6 @@ plugins:
   - - "@semantic-release/changelog"
     - changelogFile: "docs/CHANGELOG.md"
   - - "@semantic-release/git"
-    - assets:
-        - "docs/CHANGELOG.md"
-        - "docs/actions"
-        - "docs/workflows"
-        - "README.md"
-      message: "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
   - - "@semantic-release/exec"
     - verifyReleaseCmd: "./sign.sh ${nextRelease.version} $GPG_SIGNING_KEY"
       analyzeCommitCmd: "exit 0"
