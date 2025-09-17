@@ -46,7 +46,8 @@ jobs:
       - name: Set Version
         id: set_version
         env:
-          GIT_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
+          GITHUB_OWNER: "tallulahh"
           GIT_USERNAME: "tallulahh"
           GIT_AUTHOR_NAME: "tallulahh"
           GIT_COMMITTER_NAME: "tallulahh"
