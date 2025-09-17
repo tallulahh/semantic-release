@@ -72,5 +72,6 @@ jobs:
         run: |
           git add docs/ README.md || echo "No changes to add"
           git commit -m "docs: update documentation for version ${{ steps.set_version.outputs.nextReleaseVersion }} -S [skip ci]" || echo "No changes to commit"
+          git verify-commit
           git push origin main
   
