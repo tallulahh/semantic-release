@@ -32,7 +32,7 @@ jobs:
           gpg2 --import --batch ./*.asc
           rm -rf ./bot-key.asc
           rm -rf ./bot-private-key.asc
-          
+
       - name: Git config
         run: |
           git config --global user.name "tallulahh"
