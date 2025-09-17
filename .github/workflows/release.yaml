@@ -57,6 +57,7 @@ jobs:
           echo "${{ secrets.GPG_KEY }}" | base64 -d > ./bot-key.asc
           echo "${{ secrets.GPG_PRIVATE_KEY }}" | base64 -d > ./bot-private-key.asc
           gpg2 --import --batch ./*.asc
+          echo -e "5\ny\n" | gpg --command-fd 0 --edit-key "${{ secrets.GPG_SIGNING_KEY }}" trust
           rm -rf ./bot-key.asc
           rm -rf ./bot-private-key.asc
           
