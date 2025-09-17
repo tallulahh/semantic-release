@@ -19,23 +19,6 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: GPG GIT config
-        run: |
-          echo "${{ secrets.GPG_KEY }}" | base64 -d > ./bot-key.asc
-          echo "${{ secrets.GPG_PRIVATE_KEY }}" | base64 -d > ./bot-private-key.asc
-          gpg2 --import --batch ./*.asc
-          rm -rf ./bot-key.asc
-          rm -rf ./bot-private-key.asc
-          
-      - name: Git config
-        run: |
-          git config --global user.name "tallulahh"
-          git config --global user.email "tallulah.carlisle@gmail.com"
-          git config --global commit.gpgsign true
-          git config --global user.signingkey ${{ secrets.GPG_SIGNING_KEY }}
-          git status
-          chmod +x ./sign.sh
-
       - name: Set Version
         id: set_version
         env:
@@ -69,8 +52,25 @@ jobs:
           python3 ./scripts/generate_workflow_docs.py
           python3 ./scripts/update_readme.py
       
+      - name: GPG GIT config
+        run: |
+          echo "${{ secrets.GPG_KEY }}" | base64 -d > ./bot-key.asc
+          echo "${{ secrets.GPG_PRIVATE_KEY }}" | base64 -d > ./bot-private-key.asc
+          gpg2 --import --batch ./*.asc
+          rm -rf ./bot-key.asc
+          rm -rf ./bot-private-key.asc
+          
+      - name: Git config
+        run: |
+          git config --global user.name "tallulahh"
+          git config --global user.email "tallulah.carlisle@gmail.com"
+          git config --global commit.gpgsign true
+          git config --global user.signingkey ${{ secrets.GPG_SIGNING_KEY }}
+          git status
+
       - name: Commit files
         run: |
-          git add .
+          git add docs/ README.md || echo "No changes to add"
           git commit -m "docs: update documentation for version ${{ steps.set_version.outputs.nextReleaseVersion }} [skip ci]" || echo "No changes to commit"
           git push origin main
+  

@@ -10,7 +10,7 @@ plugins:
     - changelogFile: "docs/CHANGELOG.md"
   - - "@semantic-release/git"
   - - "@semantic-release/exec"
-    - verifyReleaseCmd: "./sign.sh ${nextRelease.version} $GPG_SIGNING_KEY"
+    - verifyReleaseCmd: "echo nextReleaseVersion=${nextRelease.version} >> build.env"
       analyzeCommitCmd: "exit 0"
 
 verifyConditions:
