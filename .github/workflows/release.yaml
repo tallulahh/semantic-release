@@ -21,32 +21,6 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Set Version
-        id: set_version
-        env:
-          GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
-          GITHUB_OWNER: "tallulahh"
-          GIT_USERNAME: "tallulahh"
-          GIT_AUTHOR_NAME: "tallulahh"
-          GIT_COMMITTER_NAME: "tallulahh"
-          GIT_EMAIL: "tallulah.carlisle@gmail.com"
-          GIT_AUTHOR_EMAIL: "tallulah.carlisle@gmail.com"
-          GIT_COMMITTER_EMAIL: "tallulah.carlisle@gmail.com"
-          GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
-          EDITOR: "echo 'Created-by: semantic-release' > $1"
-        run: |
-          git config --list
-          npm install -g semantic-release@24.2.5 \
-            @semantic-release/git@10.0.1 \
-            @semantic-release/exec@7.1.0 \
-            @semantic-release/changelog@6.0.3
-          npm install -g conventional-changelog@7.1.0 \
-            conventional-changelog-conventionalcommits@9.0.0 \
-            conventional-changelog-cli@5.0.0
-          npx semantic-release
-          echo "nextReleaseVersion=$(cat build.env | cut -f2 -d"=")" >> $GITHUB_OUTPUT
-          cat build.env
-
       - name: Update Documentation
         run: |
           pip3 install ruamel.yaml
@@ -70,9 +44,58 @@ jobs:
           git config --global user.signingkey ${{ secrets.GPG_SIGNING_KEY }}
           git status
 
-      - name: Commit files
+      - name: Set Version
+        id: set_version
+        env:
+          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+          GITHUB_OWNER: "tallulahh"
+          GIT_USERNAME: "tallulahh"
+          GIT_AUTHOR_NAME: "tallulahh"
+          GIT_COMMITTER_NAME: "tallulahh"
+          GIT_EMAIL: "tallulah.carlisle@gmail.com"
+          GIT_AUTHOR_EMAIL: "tallulah.carlisle@gmail.com"
+          GIT_COMMITTER_EMAIL: "tallulah.carlisle@gmail.com"
+          GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
+          EDITOR: "echo 'Created-by: semantic-release' > $1"
         run: |
-          git add docs/ README.md || echo "No changes to add"
-          git commit -m "docs(release): update documentation for version [skip ci]" -S || echo "No changes to commit"
-          git log --show-signature -1
-          git push origin main
+          git config --list
+          npm install -g semantic-release@24.2.5 \
+            @semantic-release/git@10.0.1 \
+            @semantic-release/exec@7.1.0 \
+            @semantic-release/changelog@6.0.3
+          npm install -g conventional-changelog@7.1.0 \
+            conventional-changelog-conventionalcommits@9.0.0 \
+            conventional-changelog-cli@5.0.0
+          npx semantic-release
+          echo "nextReleaseVersion=$(cat build.env | cut -f2 -d"=")" >> $GITHUB_OUTPUT
+          cat build.env
+
+      # - name: Update Documentation
+      #   run: |
+      #     pip3 install ruamel.yaml
+      #     python3 ./scripts/generate_action_docs.py
+      #     python3 ./scripts/generate_workflow_docs.py
+      #     python3 ./scripts/update_readme.py
+      
+      # - name: GPG GIT config
+      #   run: |
+      #     echo "${{ secrets.GPG_KEY }}" | base64 -d > ./bot-key.asc
+      #     echo "${{ secrets.GPG_PRIVATE_KEY }}" | base64 -d > ./bot-private-key.asc
+      #     gpg2 --import --batch ./*.asc
+      #     rm -rf ./bot-key.asc
+      #     rm -rf ./bot-private-key.asc
+          
+      # - name: Git config
+      #   run: |
+      #     git config --global user.name "tallulahh"
+      #     git config --global user.email "tallulah.carlisle@gmail.com"
+      #     git config --global commit.gpgsign true
+      #     git config --global user.signingkey ${{ secrets.GPG_SIGNING_KEY }}
+      #     git status
+
+      # - name: Commit files
+      #   run: |
+      #     git add docs/ README.md || echo "No changes to add"
+      #     git commit -m "docs(release): update documentation for version [skip ci]" -S || echo "No changes to commit"
+      #     git log --show-signature -1
+      #     git push origin main
