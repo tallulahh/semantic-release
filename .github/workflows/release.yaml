@@ -40,6 +40,7 @@ jobs:
           git config --global commit.gpgsign true
           git config --global user.signingkey ${{ secrets.GPG_SIGNING_KEY }}
           git config --global push.gpgsign true
+          git config --global receive.advertisePushOptions true
           git status
           chmod +x ./sign.sh
 
