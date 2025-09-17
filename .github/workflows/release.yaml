@@ -76,4 +76,3 @@ jobs:
           git commit -m "docs(release): update documentation for version [skip ci]" -S || echo "No changes to commit"
           git log --show-signature -1
           git push origin main
-  
