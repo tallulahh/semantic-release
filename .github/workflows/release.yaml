@@ -26,7 +26,7 @@ jobs:
           pip3 install ruamel.yaml
           python3 ./scripts/generate_action_docs.py
           python3 ./scripts/generate_workflow_docs.py
-          python3 ./scripts/update_readme.py
+          # python3 ./scripts/update_readme.py
       
       - name: GPG GIT config
         run: |
