@@ -1,3 +1,9 @@
+## [1.1.12](https://github.com/tallulahh/semantic-release/compare/1.1.11...1.1.12) (2025-09-19)
+
+### ✅ Tests
+
+* workflow ([7ccdf15](https://github.com/tallulahh/semantic-release/commit/7ccdf155a25de9ceca438ae7e8e17336c89b0ac2))
+
 ## [1.1.11](https://github.com/tallulahh/semantic-release/compare/1.1.10...1.1.11) (2025-09-19)
 
 ### 📝 Documentation
