@@ -1,3 +1,9 @@
+## [1.1.11](https://github.com/tallulahh/semantic-release/compare/1.1.10...1.1.11) (2025-09-19)
+
+### 📝 Documentation
+
+* test ([65e3d2a](https://github.com/tallulahh/semantic-release/commit/65e3d2a7edb50a0ff0d634fa94b557a8d13cf7f8))
+
 ## [1.1.10](https://github.com/tallulahh/semantic-release/compare/1.1.9...1.1.10) (2025-09-19)
 
 ### 🐛 Bug Fixes
