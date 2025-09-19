@@ -1,3 +1,14 @@
+## [1.1.10](https://github.com/tallulahh/semantic-release/compare/1.1.9...1.1.10) (2025-09-19)
+
+### 🐛 Bug Fixes
+
+* file permissins ([30a0729](https://github.com/tallulahh/semantic-release/commit/30a0729df929ac5d7b0bc2c61f7294aff8f64fd5))
+
+### ✅ Tests
+
+* test script ([7524fac](https://github.com/tallulahh/semantic-release/commit/7524fac181d9e19e4d8cf44493c12b05dfb2bf89))
+* workflow ([d1b58a0](https://github.com/tallulahh/semantic-release/commit/d1b58a00db5b9de94d2eda435dcd4306d388cfb5))
+
 ## [1.1.9](https://github.com/tallulahh/semantic-release/compare/1.1.8...1.1.9) (2025-09-17)
 
 ### 🐛 Bug Fixes
